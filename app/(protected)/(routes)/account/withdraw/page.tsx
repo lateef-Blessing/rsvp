@@ -9,17 +9,19 @@ import { useCurrentUser } from "@/hooks/use-current-user";
 import { ContentLayout } from "@/components/protected/content-layout";
 
 export default function WithdrawPage() {
-  const user = useCurrentUser();
-  if (!user) {
-    return null;
-  }
   const [accountNumber, setAccountNumber] = useState("");
   const [bankCode, setBankCode] = useState("");
   const [amount, setAmount] = useState("");
   const [isWithdrawing, setIsWithdrawing] = useState(false);
   const [withdrawError, setWithdrawError] = useState("");
   const [withdrawSuccess, setWithdrawSuccess] = useState("");
+
   const router = useRouter();
+
+  const user = useCurrentUser();
+  if (!user) {
+    return null;
+  }
 
   const handleWithdraw = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -33,7 +35,11 @@ export default function WithdrawPage() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ accountNumber, bankCode, amount: parseInt(amount) }),
+        body: JSON.stringify({
+          accountNumber,
+          bankCode,
+          amount: parseInt(amount),
+        }),
       });
 
       if (!response.ok) {

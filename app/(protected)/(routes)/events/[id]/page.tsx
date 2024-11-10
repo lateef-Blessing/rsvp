@@ -11,7 +11,6 @@ import { CopyLink } from "@/components/protected/copy-link";
 import { currentUser } from "@/lib/auth";
 import { CheckoutButton } from "@/components/protected/checkout-button";
 import { getMemberById } from "@/actions/member";
-import { Button } from "@/components/ui/button";
 import { DeleteAttendanceConfirmation } from "@/components/protected/delete-attendance-confirmation";
 
 export default async function EventDetails({
