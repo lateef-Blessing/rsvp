@@ -101,8 +101,7 @@ export const Navbar = () => {
               <SheetContent side="left" aria-describedby="menu items">
                 <SheetHeader className="pt-4">
                   <SheetTitle className="font-bold text-xl w-full flex items-center justify-center gap-2">
-                    <Users className="h-8 w-8" />
-                    LinkUp
+                    <img src="/bl-nobg.png" alt="logo" className="w-44 h-44" />
                   </SheetTitle>
                 </SheetHeader>
                 <nav className="flex flex-col justify-center items-center gap-2 mt-4">
