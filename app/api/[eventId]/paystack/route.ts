@@ -2,16 +2,6 @@ import { NextResponse } from "next/server";
 
 import { db } from "@/lib/db";
 
-const corsHeaders = {
-  "Access-Control-Allow-Origin": "*",
-  "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
-  "Access-Control-Allow-Headers": "Content-Type, Authorization",
-};
-
-export async function OPTIONS() {
-  return NextResponse.json({}, { headers: corsHeaders });
-}
-
 export async function POST(
   req: Request,
   { params }: { params: { eventId: string } }
@@ -35,12 +25,9 @@ export async function POST(
   });
 
   if (!event && !user) {
-    return NextResponse.json(
-      { url: `${process.env.NEXT_PUBLIC_APP_URL}/events` },
-      {
-        headers: corsHeaders,
-      }
-    );
+    return NextResponse.json({
+      url: `${process.env.NEXT_PUBLIC_APP_URL}/events`,
+    });
   }
 
   const order_type = event?.active ? "join" : "create";
@@ -78,10 +65,5 @@ export async function POST(
   const data = await response.json();
   const authorizationUrl = data.data.authorization_url;
 
-  return NextResponse.json(
-    { authorization_url: authorizationUrl },
-    {
-      headers: corsHeaders,
-    }
-  );
+  return NextResponse.json({ authorization_url: authorizationUrl });
 }
