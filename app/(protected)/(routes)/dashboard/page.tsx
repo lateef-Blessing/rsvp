@@ -181,7 +181,7 @@ export default async function DashboardPage({
                           {formatPrice(row.price.toString())}
                         </td>
                         <td className="min-w-[100px] py-4">
-                          {row.order_type + "event".toUpperCase()}
+                          {row.order_type + " event"}
                         </td>
                         <td className="min-w-[100px] py-4">
                           {formatDateTime(row.createdAt!).dateTime}
