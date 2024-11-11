@@ -49,7 +49,7 @@ export const SendMessage = ({ eventId }: Props) => {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 mt-3">
-        <div className="flex justify-end gap-x-2">
+        <div className="flex items-start gap-x-2">
           <FormField
             control={form.control}
             name="message"
@@ -66,9 +66,9 @@ export const SendMessage = ({ eventId }: Props) => {
             )}
           />
           {isPending ? (
-            <Button>Sending...</Button>
+            <Button className="self-end">Sending...</Button>
           ) : (
-            <Button type="submit">Send Mail</Button>
+            <Button className="self-end" type="submit">Send Mail</Button>
           )}
         </div>
       </form>
