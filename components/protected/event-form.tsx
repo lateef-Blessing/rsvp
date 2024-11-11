@@ -191,7 +191,7 @@ export const EventForm = ({ userId, type, event, eventId }: EventFormProps) => {
               )}
             />
           </div>
-          <div className="w-full overflow-hidden rounded-lg bg-background text-foreground border-2 my-2 max-h-[500px] overflow-y-hidden">
+          <div className="w-full rounded-lg bg-background text-foreground border-2 my-2 h-[300px] overflow-y-hidden">
             <FormField
               control={form.control}
               name="imageUrl"

@@ -1,9 +1,8 @@
 "use client";
 
 import { X } from "lucide-react";
-import Image from "next/image";
 
-import { UploadDropzone } from "@/lib/uploadthing";
+import { UploadButton } from "@/lib/uploadthing";
 
 import "@uploadthing/react/styles.css";
 
@@ -18,7 +17,7 @@ export function FileUpload({ endpoint, value, onChange }: FileUploadProps) {
 
   if (value && fileType !== "pdf") {
     return (
-      <div className="relative rounded-lg w-[400px] h-auto m-auto p-1">
+      <div className="relative rounded-lg w-full h-[300px] m-auto p-1">
         <img src={value} alt="upload" className="object-cover" />
         <button
           onClick={() => onChange("")}
@@ -32,15 +31,17 @@ export function FileUpload({ endpoint, value, onChange }: FileUploadProps) {
   }
 
   return (
-    <UploadDropzone
-      className="border-none outline-none"
-      endpoint={endpoint}
-      onClientUploadComplete={(res: any) => {
-        onChange(res?.[0].url);
-      }}
-      onUploadError={(error: Error) => {
-        console.log(error);
-      }}
-    />
+    <div className="w-full h-[300px] flex justify-center">
+      <UploadButton
+        endpoint={endpoint}
+        className="flex items-center"
+        onClientUploadComplete={(res: any) => {
+          onChange(res?.[0].url);
+        }}
+        onUploadError={(error: Error) => {
+          console.log(error);
+        }}
+      />
+    </div>
   );
 }

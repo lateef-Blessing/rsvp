@@ -166,7 +166,8 @@ const SettingsPage = () => {
                               {...field}
                               type="password"
                               placeholder="******"
-                              disabled
+                              readOnly
+                              disabled={isPending}
                             />
                           </FormControl>
                           <FormMessage />

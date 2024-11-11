@@ -1,6 +1,6 @@
 "use client";
 
-import { Check, Copy, SquareArrowOutUpRight, X } from "lucide-react";
+import { Check, Copy, Share2, X } from "lucide-react";
 import { useState } from "react";
 import {
   FacebookIcon,
@@ -58,7 +58,7 @@ export const CopyLink = ({ link }: Props) => {
             {showShareOptions ? (
               <X className="w-4 h-4" />
             ) : (
-              <SquareArrowOutUpRight className="w-4 h-4" />
+              <Share2 className="w-4 h-4" />
             )}
           </Button>
         </div>
