@@ -6,10 +6,10 @@ import { useTransition } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
 import { MessageSchema } from "@/schemas";
 import { sendMessage } from "@/actions/event";
+import { Button } from "@/components/ui/button";
+import { Textarea } from "@/components/ui/textarea";
 import { useCurrentUser } from "@/hooks/use-current-user";
 import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
 
@@ -35,25 +35,29 @@ export const SendMessage = ({ eventId }: Props) => {
         eventId,
         userId: user?.id!,
         path: "/events",
+      }).then((data) => {
+        if (data?.status == 200) {
+          form.reset();
+          toast.success("Message sent to all members.");
+        } else {
+          toast.error("Something went wrong.");
+        }
       });
     });
-    form.reset();
-    toast.success("Message sent to all members.")
   };
 
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 mt-3">
-        <div className="flex items-center gap-x-2">
+        <div className="flex gap-x-2">
           <FormField
             control={form.control}
             name="message"
             render={({ field }) => (
               <FormItem className="w-full">
                 <FormControl>
-                  <Input
+                  <Textarea
                     placeholder="Send message to members"
-                    type="text"
                     {...field}
                     disabled={isPending}
                   />

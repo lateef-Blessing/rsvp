@@ -347,7 +347,7 @@ export async function deleteEvent({ eventId, path }: DeleteEventParams) {
         console.log(
           `Refunded $${event.price} to member ${member.id} and sent email notification.`
         );
-        
+
         const deletedEvent = await db.event.delete({
           where: {
             id: eventId,
@@ -670,13 +670,15 @@ export async function sendMessage({
   });
 
   if (event) {
-    event?.members.forEach(async (member) => {
+    event?.members.forEach((member) => {
       try {
-        await sendEventMessageEmail(member?.user?.email!, message, event);
+        sendEventMessageEmail(member?.user?.email!, message, event);
         console.log(`Message has been sent to all members of the event.`);
       } catch (error) {
         handleError(error);
       }
     });
+
+    return { status: 200 };
   }
 }
