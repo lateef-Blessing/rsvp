@@ -49,7 +49,7 @@ export const SendMessage = ({ eventId }: Props) => {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 mt-3">
-        <div className="flex gap-x-2">
+        <div className="flex justify-end gap-x-2">
           <FormField
             control={form.control}
             name="message"
