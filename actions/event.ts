@@ -668,9 +668,9 @@ export async function sendMessage({
   });
 
   if (event) {
-    event?.members.forEach((member) => {
+    event?.members.forEach(async (member) => {
       try {
-        sendEventMessageEmail(member?.user?.email!, message, event);
+        await sendEventMessageEmail(member?.user?.email!, message, event);
         console.log(`Message has been sent to all members of the event.`);
       } catch (error) {
         handleError(error);
