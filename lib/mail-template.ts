@@ -155,7 +155,7 @@ export function renderEventAbsentMemberEmailTemplate(event: Event) {
   `;
 }
 
-export function renderEventMessageEmailTemplate(event: any, message: string) {
+export function renderEventMessageEmailTemplate(event: Event, message: string) {
   return `
   <!DOCTYPE html>
   <html lang="en">
@@ -166,7 +166,7 @@ export function renderEventMessageEmailTemplate(event: any, message: string) {
   </head>
   <body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 10px;">
     <div style="background: linear-gradient(to right, #0077B5, #00A0DC); padding: 30px; text-align: center; border-radius: 10px 10px 0 0;">
-      <img src="/assets/images/bl-nobg.png" alt="Atendeo Logo" style="width: 150px; margin-bottom: 20px;border-radius: 10px;">
+      <img src="https://rsvp-beta-azure.vercel.app/_next/image?url=https%3A%2F%2Futfs.io%2Ff%2FSvfk2YCJVYxBTCtcNTVCr7oAzt8uLkWF9XD2ypaUGNS0JM6H&w=1080&q=75" alt="Atendeo Logo" style="width: 150px; margin-bottom: 20px;border-radius: 10px;">
       <h1 style="color: white; margin: 0; font-size: 28px;">ATENDEO</h1>
     </div>
     <div style="background-color: #ffffff; padding: 10px; border-radius: 0 0 10px 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
