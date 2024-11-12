@@ -56,7 +56,7 @@ export default async function EventDetails({
               <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
                 <div className="flex gap-3">
                   <p className="font-semibold tracking-tight rounded-full px-5 py-2 bg-primary/25 text-primary">
-                    Event Fee: ${event?.price}
+                    ${event?.price}
                   </p>
                   <p className="font-medium tracking-tight rounded-full bg-secondary px-4 py-2.5 text-muted-foreground">
                     {event?.category.name}
