@@ -9,8 +9,8 @@ generator client {
 }
 
 datasource db {
-  provider     = "postgresql"
-  url          = env("DATABASE_URL")
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
 
 enum UserRole {
@@ -28,6 +28,7 @@ model User {
   password      String?
   role          UserRole  @default(USER)
   ref           String?
+  suspended     Boolean   @default(false)
 
   accounts Account[]
   events   Event[]

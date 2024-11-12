@@ -68,6 +68,7 @@ export const {
         session.user.email = token.email!;
         session.user.isOAuth = token.isOAuth as boolean;
         session.user.balance = token.balance as number;
+        session.user.suspended = token.suspended as string;
         session.user.isTwoFactorEnabled = token.isTwoFactorEnabled as boolean;
       }
 
@@ -86,6 +87,7 @@ export const {
       token.name = existingUser.name;
       token.email = existingUser.email;
       token.balance = existingUser.balance;
+      token.suspended = existingUser.suspended;
       token.role = existingUser.role;
       token.isTwoFactorEnabled = existingUser.isTwoFactorEnabled;
 

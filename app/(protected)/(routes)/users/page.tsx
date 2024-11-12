@@ -7,6 +7,7 @@ import { ContentLayout } from "@/components/protected/content-layout";
 import { DeleteUserConfirmation } from "@/components/protected/delete-user-confirmation";
 import { ViewProfileButton } from "@/components/protected/view-profile-button";
 import { EventSearch } from "@/components/protected/event-search";
+import { SuspendUserConfirmation } from "@/components/protected/suspend-user-confirmation";
 
 export default async function UsersPage({ searchParams }: SearchParamProps) {
   const searchText = (searchParams?.query as string) || "";
@@ -27,7 +28,7 @@ export default async function UsersPage({ searchParams }: SearchParamProps) {
               <th className="min-w-[100px] py-3 text-left">Balance</th>
               <th className="min-w-[100px] py-3 text-left">Role</th>
               <th className="min-w-[100px] py-3 text-left">Verified</th>
-              <th className="min-w-[100px] py-3 text-right">Action</th>
+              <th className="min-w-[100px] py-3 text-center">Action</th>
             </tr>
           </thead>
           <tbody>
@@ -62,10 +63,13 @@ export default async function UsersPage({ searchParams }: SearchParamProps) {
                       <td className="min-w-[100px] py-4">
                         {formatDateTime(row.emailVerified!).dateTime}
                       </td>
-                      <td className="min-w-[100px] py-4 flex items-center justify-end gap-2">
+                      <td className="min-w-[100px] py-4 flex items-center gap-2">
                         <ViewProfileButton userId={row.id} />
                         {row.role !== UserRole.ADMIN && (
-                          <DeleteUserConfirmation userId={row.id} />
+                          <>
+                            <SuspendUserConfirmation userId={row.id} action={row.suspended ? "unlock" : "lock"} />
+                            <DeleteUserConfirmation userId={row.id} />
+                          </>
                         )}
                       </td>
                     </tr>

@@ -14,11 +14,23 @@ export default async function ProtectedLayout({
     location.reload();
   }
 
-  return (
-    <>
-      <Sidebar />
-      <Main>{children}</Main>
-      <Footer />
-    </>
-  );
+  if (user?.suspended) {
+    return (
+      <div className="p-4">
+        <h1 className="text-red-400">
+          Your account is suspended contact Admin for more info .
+        </h1>
+        <a href={`mailto:${process.env.NEXT_PUBLIC_PERSONAL_EMAIL}`}>here</a>$
+        {process.env.NEXT_PUBLIC_PERSONAL_EMAIL}
+      </div>
+    );
+  } else {
+    return (
+      <>
+        <Sidebar />
+        <Main>{children}</Main>
+        <Footer />
+      </>
+    );
+  }
 }

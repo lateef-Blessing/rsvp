@@ -18,14 +18,14 @@ const config: Config = {
     },
     extend: {
       colors: {
-        bgPrimary: "#3758F9",
+        bgPrimary: "#3b82f6",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         primary: {
-          DEFAULT: "#3758F9",
+          DEFAULT: "#3b82f6",
           foreground: "hsl(var(--primary-foreground))",
         },
         secondary: {

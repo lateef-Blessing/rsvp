@@ -1,8 +1,8 @@
 "use client";
 
 import { toast } from "sonner";
-import { Trash } from "lucide-react";
 import { useTransition } from "react";
+import { Lock, Unlock } from "lucide-react";
 import { useRouter } from "next/navigation";
 
 import {
@@ -17,21 +17,36 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 
-export const DeleteUserConfirmation = ({ userId }: { userId: string }) => {
+export const SuspendUserConfirmation = ({
+  userId,
+  action,
+}: {
+  userId: string;
+  action: string;
+}) => {
   const router = useRouter();
   let [isPending, startTransition] = useTransition();
 
   return (
     <AlertDialog>
-      <AlertDialogTrigger className="bg-red-600 text-black rounded-md p-3 cursor-pointer">
-        <Trash className="w-4 h-4" />
+      <AlertDialogTrigger className="bg-green-600 text-black rounded-md p-3 cursor-pointer">
+        {action == "lock" ? (
+          <Lock className="w-4 h-4" />
+        ) : (
+          <Unlock className="w-4 h-4" />
+        )}
       </AlertDialogTrigger>
 
       <AlertDialogContent>
         <AlertDialogHeader>
-          <AlertDialogTitle>Are you sure you want to delete?</AlertDialogTitle>
+          <AlertDialogTitle>
+            Are you sure you want to{" "}
+            {action == "lock" ? "suspend" : "remove suspension"}?
+          </AlertDialogTitle>
           <AlertDialogDescription className="text-muted-foreground font-medium">
-            This will permanently remove this user account.
+            {action == "lock"
+              ? "This user won't be able to use the platform."
+              : "The user will be able to resume activities on the platform"}
           </AlertDialogDescription>
         </AlertDialogHeader>
 
@@ -41,18 +56,20 @@ export const DeleteUserConfirmation = ({ userId }: { userId: string }) => {
           <AlertDialogAction
             onClick={() =>
               startTransition(async () => {
-                await fetch(`/api/users/${userId}`)
+                await fetch(`/api/users/${userId}`, {
+                  method: "PATCH",
+                })
                   .then((res) => res.json())
                   .then((data) => {
                     if (data.status == 200) {
                       router.refresh();
-                      toast.success("User Deleted.")
+                      toast.success(`${action == "lock" ? "User Suspended" : "Removed Suspension"}`)
                     }
                   });
               })
             }
           >
-            {isPending ? "Deleting..." : "Delete"}
+            {isPending ? "Processing..." : "Continue"}
           </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
