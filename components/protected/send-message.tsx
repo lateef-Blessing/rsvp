@@ -65,9 +65,9 @@ export const SendMessage = ({ eventId }: Props) => {
             )}
           />
           {isPending ? (
-            <Button className="w-full self-end">Sending...</Button>
+            <Button className="w-full md:w-max self-end">Sending...</Button>
           ) : (
-            <Button className="w-full self-end" type="submit">Send Mail</Button>
+            <Button className="w-full md:w-max self-end" type="submit">Send Mail</Button>
           )}
         </div>
       </form>

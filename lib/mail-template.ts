@@ -155,7 +155,7 @@ export function renderEventAbsentMemberEmailTemplate(event: Event) {
   `;
 }
 
-export function renderEventMessageEmailTemplate(event: Event, message: string) {
+export function renderEventMessageEmailTemplate(event: any, message: string) {
   return `
   <!DOCTYPE html>
   <html lang="en">

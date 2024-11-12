@@ -124,7 +124,7 @@ export const sendAbsentMembersEmail = async (email: string, event: Event) => {
   }
 };
 
-export const sendEventMessageEmail = async (email: string, message: string, event: Event) => {
+export const sendEventMessageEmail = async (email: string, message: string, event: any) => {
   try {
     const mail = await transporter.sendMail({
       from: process.env.NEXT_PUBLIC_PERSONAL_EMAIL,

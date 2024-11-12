@@ -657,6 +657,7 @@ export async function sendMessage({
     where: {
       id: eventId,
       active: true,
+      userId
     },
     include: {
       members: {
