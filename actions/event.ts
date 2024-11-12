@@ -651,14 +651,12 @@ export async function getRelatedEventsByCategory({
 export async function sendMessage({
   eventId,
   userId,
-  path,
   message,
 }: SendMessageParams) {
   const event = await db.event.findFirst({
     where: {
       id: eventId,
       active: true,
-      userId,
     },
     include: {
       members: {
@@ -680,5 +678,7 @@ export async function sendMessage({
     });
 
     return { status: 200 };
+  } else {
+    return { error: "Event not found"}
   }
 }

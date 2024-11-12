@@ -34,7 +34,6 @@ export const SendMessage = ({ eventId }: Props) => {
         message: values.message!,
         eventId,
         userId: user?.id!,
-        path: "/events",
       }).then((data) => {
         if (data?.status == 200) {
           form.reset();
@@ -49,7 +48,7 @@ export const SendMessage = ({ eventId }: Props) => {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 mt-3">
-        <div className="flex items-start gap-x-2">
+        <div className="flex flex-col md:flex-row items-start gap-2">
           <FormField
             control={form.control}
             name="message"

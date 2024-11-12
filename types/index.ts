@@ -81,7 +81,6 @@ export type DeleteEventAttendanceParams = {
 export type SendMessageParams = {
   eventId: string;
   userId: string;
-  path: string;
   message: string;
 };
 
