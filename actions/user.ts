@@ -11,6 +11,7 @@ export async function getUsers({ searchString }: GetUsersBySearchParams) {
         where: {
           name: {
             contains: searchString,
+            mode: "insensitive",
           },
         },
       });

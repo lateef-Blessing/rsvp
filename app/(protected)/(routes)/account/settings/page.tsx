@@ -1,7 +1,6 @@
 "use client";
 
 import * as z from "zod";
-import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useTransition, useState } from "react";
@@ -26,6 +25,7 @@ import { useCurrentUser } from "@/hooks/use-current-user";
 import { FormSuccess } from "@/components/form-success";
 import { FormError } from "@/components/form-error";
 import { ContentLayout } from "@/components/protected/content-layout";
+import { BackButton } from "@/components/protected/back-button";
 
 const SettingsPage = () => {
   const user = useCurrentUser();
@@ -68,25 +68,23 @@ const SettingsPage = () => {
 
   return (
     <ContentLayout title="Account Settings">
-      <div className="flex items-start py-4 shadow-md">
-        <Link href="/account" className="text-primary">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-6 w-6"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M15 19l-7-7 7-7"
-            />
-          </svg>
-        </Link>
-      </div>
-      <Card className="w-full">
+      <BackButton>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="h-6 w-6"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            d="M15 19l-7-7 7-7"
+          />
+        </svg>
+      </BackButton>
+      <Card className="w-full mt-4">
         <CardHeader>
           <p className="text-2xl font-semibold text-center">🔅Edit Profile</p>
         </CardHeader>

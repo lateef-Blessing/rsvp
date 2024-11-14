@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { useCurrentUser } from "@/hooks/use-current-user";
 import { ContentLayout } from "@/components/protected/content-layout";
+import { BackButton } from "@/components/protected/back-button";
 
 export default function WithdrawPage() {
   const [accountNumber, setAccountNumber] = useState("");
@@ -68,24 +69,22 @@ export default function WithdrawPage() {
 
   return (
     <ContentLayout title="Withdraw Earnings">
-      <div className="flex items-start py-4 shadow-md">
-        <Link href="/account" className="text-primary">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-6 w-6"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M15 19l-7-7 7-7"
-            />
-          </svg>
-        </Link>
-      </div>
+      <BackButton>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="h-6 w-6"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            d="M15 19l-7-7 7-7"
+          />
+        </svg>
+      </BackButton>
       <div className="w-full mx-auto rounded-lg shadow-md pt-4">
         <form onSubmit={handleWithdraw}>
           <div className="mb-4">

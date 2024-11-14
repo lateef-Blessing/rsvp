@@ -10,9 +10,13 @@ export async function getOrders({ searchString }: GetUsersBySearchParams) {
         where: {
           eventTitle: {
             contains: searchString,
+            mode: "insensitive",
           },
           isPaid: true,
         },
+        orderBy: {
+          createdAt: "desc"
+        }
       });
 
       return JSON.parse(JSON.stringify(orders));
@@ -21,6 +25,9 @@ export async function getOrders({ searchString }: GetUsersBySearchParams) {
         where: {
           isPaid: true,
         },
+        orderBy: {
+          createdAt: "desc"
+        }
       });
 
       return JSON.parse(JSON.stringify(orders));

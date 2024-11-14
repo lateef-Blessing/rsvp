@@ -17,6 +17,7 @@ export async function getMembersByEventId({
           user: {
             name: {
               contains: searchString,
+              mode: "insensitive",
             },
           },
         },

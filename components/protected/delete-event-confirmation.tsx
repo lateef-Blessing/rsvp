@@ -35,10 +35,9 @@ export const DeleteEventConfirmation = ({ eventId }: { eventId: string }) => {
 
       <AlertDialogContent>
         <AlertDialogHeader>
-          <AlertDialogTitle>Are you sure you want to delete?</AlertDialogTitle>
+          <AlertDialogTitle>Are you sure you want to cancel this event?</AlertDialogTitle>
           <AlertDialogDescription className="text-muted-foreground font-medium">
-            This will permanently delete this event and refund the deposited
-            amount to each member.
+            Make sure to notify RSVP before the cancellation via the Member Details Page.
           </AlertDialogDescription>
         </AlertDialogHeader>
 

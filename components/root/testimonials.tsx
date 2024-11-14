@@ -85,7 +85,7 @@ const testimonialData: Testimonial[] = [
     designation: "Founder @ Rolex",
     content:
       "Atendeo has transformed how I manage my corporate events. No-shows have decreased significantly, and my attendees love the potential for bonus payouts!",
-    image: "/author-01.png",
+    image: "/assets/images/author-01.png",
     star: 5,
   },
   {
@@ -94,7 +94,7 @@ const testimonialData: Testimonial[] = [
     designation: "Founder @ UI Hunter",
     content:
       "I used to waste so much time and money on flaky RSVPs. This platform has made my life as a wedding planner so much easier! Everything is automated.",
-    image: "/author-02.png",
+    image: "/assets/images/author-02.png",
     star: 5,
   },
   {
@@ -103,7 +103,7 @@ const testimonialData: Testimonial[] = [
     designation: "Founder @ Trorex",
     content:
       "Our members are so impressed. It's intuitive. It's clean. It's distraction free. If you're organizing an event use atendeo, it is very easy to use with full fledged features.",
-    image: "/author-03.png",
+    image: "/assets/images/author-03.png",
     star: 5,
   },
 ];

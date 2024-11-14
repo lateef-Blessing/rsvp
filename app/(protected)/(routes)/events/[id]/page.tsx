@@ -10,8 +10,9 @@ import { getEventById, getRelatedEventsByCategory } from "@/actions/event";
 import { CopyLink } from "@/components/protected/copy-link";
 import { currentUser } from "@/lib/auth";
 import { CheckoutButton } from "@/components/protected/checkout-button";
-import { getMemberById } from "@/actions/member";
 import { DeleteAttendanceConfirmation } from "@/components/protected/delete-attendance-confirmation";
+import { BackButton } from "@/components/protected/back-button";
+import Link from "next/link";
 
 export default async function EventDetails({
   params: { id },
@@ -35,10 +36,24 @@ export default async function EventDetails({
     page: searchParams.page as string,
   });
 
-  const member = await getMemberById({ memberId: user?.id as string });
-
   return (
     <ContentLayout title="Event Details">
+      <BackButton>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="h-6 w-6"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            d="M15 19l-7-7 7-7"
+          />
+        </svg>
+      </BackButton>
       <section className="flex justify-center bg-background text-foreground bg-contain my-8">
         <div className="grid grid-cols-1 md:grid-cols-2 2xl:max-w-7xl">
           <Image
@@ -53,36 +68,17 @@ export default async function EventDetails({
             <div className="flex flex-col gap-6">
               <h2 className="text-2xl">{event?.title}</h2>
 
-              <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
-                <div className="flex gap-3">
-                  <p className="font-semibold tracking-tight rounded-full px-5 py-2 bg-primary/25 text-primary">
-                    ${event?.price}
-                  </p>
-                  <p className="font-medium tracking-tight rounded-full bg-secondary px-4 py-2.5 text-muted-foreground">
-                    {event?.category.name}
-                  </p>
-                </div>
+              <p className="font-medium tracking-tight mt-2">
+                Organised by{" "}
+                <span className="text-muted-foreground">
+                  {event?.user?.name} ({event?.user?.email})
+                </span>
+              </p>
 
-                <p className="font-medium tracking-tight ml-2 mt-2 sm:mt-0">
-                  by{" "}
-                  <span className="text-muted-foreground">
-                    {event?.user?.name} ({event?.user?.email})
-                  </span>
-                </p>
-              </div>
+              <p className="font-semibold tracking-tight w-max rounded-full px-5 py-2 bg-primary/25 text-primary">
+                Event Category: {event?.category?.name}
+              </p>
             </div>
-
-            {memberIds?.includes(user?.id) && user?.id !== event?.userId && (
-              <DeleteAttendanceConfirmation eventId={event?.id} />
-            )}
-
-            {user?.id !== event?.userId &&
-              !memberIds?.includes(user?.id) &&
-              event?.stop_attendance == false && (
-                <>
-                  <CheckoutButton event={event} />
-                </>
-              )}
 
             <div className="flex flex-col gap-5">
               <div className="flex gap-2 md:gap-3">
@@ -93,10 +89,7 @@ export default async function EventDetails({
                   height={32}
                 />
                 <div className="font-medium lg:font-normal flex flex-wrap items-center">
-                  <p>
-                    {formatDateTime(event?.eventDate).dateOnly} -{" "}
-                    {formatDateTime(event?.eventDate).timeOnly}
-                  </p>
+                  <p>{formatDateTime(event?.eventDate).dateTime}</p>
                 </div>
               </div>
 
@@ -113,15 +106,49 @@ export default async function EventDetails({
               </div>
             </div>
 
-            <div className="flex flex-col gap-2">
-              <p className="font-semibold text-foreground">Details:</p>
-              <p className="font-medium lg:font-normal">{event?.description}</p>
-              <div className="flex flex-col mt-4">
-                <p className="font-medium lg:font-bold tracking-tight leading-relaxed m-0 p-0">
-                  Invite People:
+            <div className="flex flex-col gap-4">
+              <div>
+                <p className="font-bold text-foreground">Event Description:</p>
+                <p className="font-medium lg:font-normal">
+                  {event?.description}
                 </p>
-                <CopyLink link={event?.id} />
               </div>
+              <div>
+                <p className="font-bold text-foreground">Note:</p>
+                <p className="font-medium lg:font-normal">
+                  Event Fee is set by the organizer and refundable if present at
+                  event. Check{" "}
+                  <span>
+                    <Link href="/terms" className="text-primary">
+                      Terms
+                    </Link>
+                  </span>{" "}
+                  for further information!
+                </p>
+              </div>
+            </div>
+
+            <div className="flex items-center justify-between">
+              <p className="font-semibold tracking-tight rounded-full px-5 py-2 bg-primary/25 text-primary">
+                Event Fee: ${event?.price}
+              </p>
+
+              {user?.id !== event?.userId &&
+                !memberIds?.includes(user?.id) &&
+                event?.stop_attendance == false && (
+                  <CheckoutButton event={event} />
+                )}
+            </div>
+
+            {memberIds?.includes(user?.id) && user?.id !== event?.userId && (
+              <DeleteAttendanceConfirmation eventId={event?.id} />
+            )}
+
+            <div className="flex flex-col mt-4">
+              <p className="font-medium lg:font-bold tracking-tight leading-relaxed m-0 p-0">
+                Invite People:
+              </p>
+              <CopyLink link={event?.id} />
             </div>
           </div>
         </div>

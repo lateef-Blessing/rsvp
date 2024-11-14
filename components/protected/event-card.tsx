@@ -3,13 +3,12 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Edit } from "lucide-react";
+import { redirect } from "next/navigation";
 
 import { formatDateTime } from "@/lib/utils";
 import { useCurrentUser } from "@/hooks/use-current-user";
 import { EventWithUserWithCategory } from "@/types";
 import { DeleteEventConfirmation } from "@/components/protected/delete-event-confirmation";
-import { UserRole } from "@prisma/client";
-import { redirect } from "next/navigation";
 
 type CardProps = {
   event: EventWithUserWithCategory;
@@ -33,9 +32,9 @@ export const EventCard = ({ event, hasOrderLink }: CardProps) => {
         style={{ backgroundImage: `url(${event.imageUrl})` }}
         className="flex-center flex-grow bg-cover bg-center"
       />
-      {/* IS EVENT CREATOR ... */}
 
-      {user.role == UserRole.ADMIN || isEventCreator && new Date(event.eventDate) > new Date() && (
+      {/* IS EVENT CREATOR ... */}
+      {isEventCreator && new Date(event.eventDate) > new Date() && (
         <div className="absolute right-2 top-2 flex flex-col gap-4 rounded-xl p-2 shadow-sm transition-all bg-white">
           <Link href={`/events/${event.id}/update`}>
             <Edit className="text-primary w-5 h-5" />
@@ -45,27 +44,26 @@ export const EventCard = ({ event, hasOrderLink }: CardProps) => {
       )}
 
       <div className="flex min-h-[150px] flex-col gap-2 p-5 md:gap-3">
-        <div className="flex gap-2 pl-2">
-          <span className="w-min rounded-full px-4 py-1 bg-primary/25 text-primary">
-            ${event.price}
-          </span>
-          <p className="w-min rounded-full px-4 py-1 line-clamp-1 bg-secondary">
-            {event.category.name}
-          </p>
-        </div>
-
-        <p className="text-sm tracking-tight text-muted-foreground">
-          {formatDateTime(event.eventDate).dateTime}
-        </p>
-
         <Link href={`/events/${event.id}`}>
           <p className="line-clamp-2 flex-1 font-semibold tracking-tight">
             {event.title}
           </p>
         </Link>
 
+        <p className="text-sm tracking-tight text-muted-foreground">
+          {formatDateTime(event.eventDate).dateTime}
+        </p>
+
+        <p className="text-md tracking-tight">Oragniser: {event.user.name}</p>
+
+        <p className="text-md tracking-tight">
+          Category: {event.category.name}
+        </p>
+
         <div className="flex justify-between items-center w-full">
-          <p className="">{event.user.name}</p>
+          <p className="w-min rounded-full px-4 py-1 bg-primary/25 text-primary">
+            ${event.price}
+          </p>
 
           {hasOrderLink && (
             <Link href={`/members?eventId=${event.id}`} className="flex gap-2">

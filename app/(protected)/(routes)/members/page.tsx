@@ -13,6 +13,7 @@ import { EventQRCode } from "@/components/protected/event-qr-code";
 import { StopAttendanceConfirmation } from "@/components/protected/stop-attendance-confirmation";
 import { EnableAttendanceConfirmation } from "@/components/protected/enable-attendance-confirmation";
 import { SendMessage } from "@/components/protected/send-message";
+import { BackButton } from "@/components/protected/back-button";
 
 export default async function MembersPage({ searchParams }: SearchParamProps) {
   const eventId = (searchParams?.eventId as string) || "";
@@ -25,6 +26,22 @@ export default async function MembersPage({ searchParams }: SearchParamProps) {
 
   return (
     <ContentLayout title="Member Details">
+      <BackButton>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="h-6 w-6"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            d="M15 19l-7-7 7-7"
+          />
+        </svg>
+      </BackButton>
       <section className="flex justify-center bg-background text-foreground bg-contain my-8">
         <div className="grid grid-cols-1 md:grid-cols-2 2xl:max-w-7xl">
           <EventQRCode
@@ -71,8 +88,7 @@ export default async function MembersPage({ searchParams }: SearchParamProps) {
                 />
                 <div className="font-medium lg:font-normal flex flex-wrap items-center">
                   <p>
-                    {formatDateTime(event.eventDate).dateOnly} -{" "}
-                    {formatDateTime(event.eventDate).timeOnly}
+                    {formatDateTime(event.eventDate).dateTime}
                   </p>
                 </div>
               </div>

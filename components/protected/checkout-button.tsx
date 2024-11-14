@@ -50,7 +50,7 @@ export const CheckoutButton = ({ event }: { event: EventWithUser }) => {
           className="sm:w-fit"
           disabled={isPending}
         >
-          {isPending ? "Processing" : "Pay now"}
+          {isPending ? "Registering..." : "Register"}
         </Button>
       )}
     </div>

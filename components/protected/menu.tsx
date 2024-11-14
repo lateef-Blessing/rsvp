@@ -109,13 +109,9 @@ export const Menu = ({ isOpen }: MenuProps) => {
               <Tooltip delayDuration={100}>
                 <TooltipTrigger asChild>
                   <Button
-                    variant="outline"
-                    className="w-full justify-center h-10 mt-5"
+                    className="w-full justify-center h-10 mt-5 bg-primary"
                   >
                     <LogoutButton>
-                      <span className={cn(isOpen === false ? "" : "mr-4")}>
-                        <LogOut size={18} />
-                      </span>
                       <p
                         className={cn(
                           "whitespace-nowrap",

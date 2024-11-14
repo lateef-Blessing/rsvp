@@ -62,6 +62,7 @@ export async function getAllEvents({
           where: {
             title: {
               contains: query,
+              mode: "insensitive",
             },
             active: true,
             members: {
@@ -84,6 +85,7 @@ export async function getAllEvents({
           where: {
             title: {
               contains: query,
+              mode: "insensitive",
             },
             active: true,
             members: {
@@ -657,7 +659,7 @@ export async function sendMessage({
     where: {
       id: eventId,
       active: true,
-      userId
+      userId,
     },
     include: {
       members: {
@@ -680,6 +682,6 @@ export async function sendMessage({
 
     return { status: 200 };
   } else {
-    return { error: "Event not found"}
+    return { error: "Event not found" };
   }
 }
