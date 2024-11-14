@@ -134,8 +134,6 @@ export function renderEventAbsentMemberEmailTemplate(event: Event) {
 
 export function renderEventMessageEmailTemplate(event: Event, message: string) {
   return `
-  <html lang="en">
-  <body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 10px;">
     <div style="background-color: black; padding: 20px; text-align: center; border-radius: 10px 10px 0 0;">
       <img src=${`${process.env.NEXT_PUBLIC_APP_URL}/bl-nobg.png`} alt="Atendeo Logo" style="width: 300px; height: 300px;">
     </div>
@@ -154,7 +152,5 @@ export function renderEventMessageEmailTemplate(event: Event, message: string) {
       <p style="color: gray; margin-top: 30px;">If you have any questions or need assistance, our support team is always here to help.</p>
       <p style="color: gray;">Best regards,<br>The Atendeo Team</p>
     </div>
-  </body>
-  </html>
   `;
 }
