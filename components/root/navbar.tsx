@@ -119,7 +119,7 @@ export const Navbar = () => {
                   <Link
                     rel="noreferrer noopener"
                     href="/auth/login"
-                    className="w-[110px] border-2 bg-transparent hover:bg-primary transition-all"
+                    className="py-2 px-4 rounded-lg border-2 border-bgPrimary bg-transparent hover:bg-primary transition-all"
                   >
                     Sign in
                   </Link>
