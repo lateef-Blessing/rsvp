@@ -1,6 +1,5 @@
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRightIcon } from "lucide-react";
 
 export const Hero = () => {
   return (
@@ -26,7 +25,6 @@ export const Hero = () => {
                   className="inline-flex items-center justify-center rounded-md bg-primary px-7 py-3 text-center text-base font-medium duration-300 hover:bg-primary/90"
                 >
                   Create an Event!
-                  <ArrowRightIcon />
                 </Link>
               </div>
             </div>
@@ -34,7 +32,7 @@ export const Hero = () => {
             <div className="w-full px-4 lg:w-1/2">
               <div className="-mx-2 flex flex-wrap sm:-mx-4 lg:-mx-2 xl:-mx-4">
                 <Image
-                  src="/assets/images/hero.png"
+                  src="/assets/images/undraw_group_hangout.svg"
                   alt="hero"
                   width={1000}
                   height={1000}

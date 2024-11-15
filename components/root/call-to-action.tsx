@@ -18,7 +18,7 @@ export function CallToAction() {
                   href="/auth/login"
                   className="inline-block rounded-md border border-transparent bg-secondary px-7 py-3 text-base font-medium transition hover:bg-transparent hover:border-2 hover:border-black/80"
                 >
-                  Create an Event Now!
+                  Host an Event
                 </Link>
               </div>
             </div>

@@ -1,4 +1,4 @@
-import localFont from "next/font/local";
+import { Delius_Swash_Caps } from "next/font/google";
 import { SessionProvider } from "next-auth/react";
 
 import "@/app/globals.css";
@@ -8,37 +8,28 @@ import { ThemeProvider } from "@/providers/theme-provider";
 import { Toaster } from "@/components/ui/sonner";
 import { constructMetadata } from "@/lib/utils";
 
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
+const deliusSwashCaps = Delius_Swash_Caps({
+  weight: "400",
+  subsets: ["latin"],
+  variable: "--font-delius-swash-caps",
 });
 
-export const metadata = constructMetadata()
+export const metadata = constructMetadata();
 
 export default async function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: Readonly<{ children: React.ReactNode }>) {
   const session = await auth();
 
   return (
     <SessionProvider session={session}>
       <html lang="en" suppressHydrationWarning>
-        <body
-          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-        >
+        <body className={`${deliusSwashCaps.variable} antialiased`}>
           <ThemeProvider
             attribute="class"
             defaultTheme="dark"
             enableSystem={false}
-            storageKey="discord-theme"
+            storageKey="atendeo-theme"
           >
             <ModalProvider />
             <Toaster />

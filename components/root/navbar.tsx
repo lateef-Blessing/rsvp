@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useState, useEffect } from "react";
-import { PanelLeft, LogIn, Users, PanelsTopLeft } from "lucide-react";
+import { PanelLeft } from "lucide-react";
 
 import {
   NavigationMenu,
@@ -119,11 +119,8 @@ export const Navbar = () => {
                   <Link
                     rel="noreferrer noopener"
                     href="/auth/login"
-                    className={`w-[110px] border ${buttonVariants({
-                      variant: "secondary",
-                    })}`}
+                    className="w-[110px] border-2 bg-transparent hover:bg-primary transition-all"
                   >
-                    <LogIn className="mr-2 w-5 h-5" />
                     Sign in
                   </Link>
                 </nav>
@@ -147,15 +144,15 @@ export const Navbar = () => {
             ))}
           </nav>
 
+
           <div className="hidden md:flex items-center gap-4">
             <ThemeToggle />
 
             <Link
               rel="noreferrer noopener"
               href="/auth/login"
-              className={`border ${buttonVariants({ variant: "secondary" })}`}
+              className="py-2 px-4 rounded-lg border-2 border-bgPrimary bg-transparent hover:bg-primary transition-all"
             >
-              <LogIn className="mr-2 w-5 h-5" />
               Sign in
             </Link>
           </div>
