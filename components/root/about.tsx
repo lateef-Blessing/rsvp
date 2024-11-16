@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from 'next/image'
 
 export function About() {
   return (
@@ -26,7 +26,7 @@ export function About() {
 
                 <a
                   href="/#"
-                  className="inline-flex items-center justify-center rounded-md bg-primary px-7 py-3 text-center text-base font-medium duration-300 hover:bg-primary/90"
+                  className="inline-flex items-center justify-center rounded-md bg-primary px-7 py-3 text-center text-base font-medium duration-300 hover:bg-primary/50"
                 >
                   Know more about us
                 </a>
@@ -48,5 +48,5 @@ export function About() {
         </div>
       </div>
     </section>
-  );
+  )
 }

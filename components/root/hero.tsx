@@ -1,11 +1,9 @@
-import Link from "next/link";
-import Image from "next/image";
+import Link from 'next/link'
+import Image from 'next/image'
 
 export const Hero = () => {
   return (
-    <section
-      className="pb-8 pt-20 bg-zinc-400/10 lg:pb-[70px] lg:pt-[120px]"
-    >
+    <section className="pb-8 pt-20 bg-zinc-400/10 lg:pb-[70px] lg:pt-[120px]">
       <div className="container">
         <div>
           <div className="-mx-4 flex flex-wrap items-center">
@@ -22,7 +20,7 @@ export const Hero = () => {
 
                 <Link
                   href="/auth/login"
-                  className="inline-flex items-center justify-center rounded-md bg-primary px-7 py-3 text-center text-base font-medium duration-300 hover:bg-primary/90"
+                  className="inline-flex items-center justify-center rounded-md bg-primary px-7 py-3 text-center text-base font-medium duration-300 hover:bg-primary/50"
                 >
                   Create an Event!
                 </Link>
@@ -44,5 +42,5 @@ export const Hero = () => {
         </div>
       </div>
     </section>
-  );
-};
+  )
+}

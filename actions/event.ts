@@ -1,10 +1,10 @@
-"use server";
+'use server'
 
-import { v4 as uuidv4 } from "uuid";
-import { revalidatePath } from "next/cache";
+import { v4 as uuidv4 } from 'uuid'
+import { revalidatePath } from 'next/cache'
 
-import { db } from "@/lib/db";
-import { handleError } from "@/lib/utils";
+import { db } from '@/lib/db'
+import { handleError } from '@/lib/utils'
 import {
   CreateEventParams,
   DeleteEventAttendanceParams,
@@ -14,23 +14,23 @@ import {
   GetRelatedEventsByCategoryParams,
   SendMessageParams,
   UpdateEventParams,
-} from "@/types";
-import { MemberRole } from "@prisma/client";
+} from '@/types'
+import { MemberRole } from '@prisma/client'
 import {
   sendEventAttendanceDeletionEmail,
   sendEventDeletionEmail,
   sendEventMessageEmail,
-} from "@/lib/mail";
+} from '@/lib/mail'
 
 const getCategoryByName = async (name: string) => {
   const category = await db.category.findFirst({
     where: {
       name,
     },
-  });
+  })
 
-  return category;
-};
+  return category
+}
 
 // GET ALL ACTIVE EVENTS (ADMIN ONLY)
 export async function getAllEventsAdmin() {
@@ -39,10 +39,10 @@ export async function getAllEventsAdmin() {
       where: {
         active: true,
       },
-    });
-    return JSON.parse(JSON.stringify(events));
+    })
+    return JSON.parse(JSON.stringify(events))
   } catch (error) {
-    handleError(error);
+    handleError(error)
   }
 }
 
@@ -55,59 +55,9 @@ export async function getAllEvents({
   category,
 }: GetAllEventsParams) {
   try {
-    const skipAmount = (Number(page) - 1) * limit;
-    if (query) {
-      const [events, eventsCount] = await db.$transaction([
-        db.event.findMany({
-          where: {
-            title: {
-              contains: query,
-              mode: "insensitive",
-            },
-            active: true,
-            members: {
-              some: {
-                userId,
-              },
-            },
-          },
-          skip: skipAmount,
-          take: limit,
-          orderBy: {
-            createdAt: "desc",
-          },
-          include: {
-            user: true,
-            category: true,
-          },
-        }),
-        db.event.count({
-          where: {
-            title: {
-              contains: query,
-              mode: "insensitive",
-            },
-            active: true,
-            members: {
-              some: {
-                userId,
-              },
-            },
-          },
-          skip: skipAmount,
-          take: limit,
-          orderBy: {
-            createdAt: "desc",
-          },
-        }),
-      ]);
-
-      return {
-        data: JSON.parse(JSON.stringify(events)),
-        totalPages: Math.ceil(eventsCount / limit),
-      };
-    } else if (category) {
-      const categoryData = await getCategoryByName(category);
+    const skipAmount = (Number(page) - 1) * limit
+    if (category) {
+      const categoryData = await getCategoryByName(category)
       const [events, eventsCount] = await db.$transaction([
         db.event.findMany({
           where: {
@@ -122,7 +72,7 @@ export async function getAllEvents({
           skip: skipAmount,
           take: limit,
           orderBy: {
-            createdAt: "desc",
+            createdAt: 'desc',
           },
           include: {
             user: true,
@@ -142,15 +92,65 @@ export async function getAllEvents({
           skip: skipAmount,
           take: limit,
           orderBy: {
-            createdAt: "desc",
+            createdAt: 'desc',
           },
         }),
-      ]);
+      ])
 
       return {
         data: JSON.parse(JSON.stringify(events)),
         totalPages: Math.ceil(eventsCount / limit),
-      };
+      }
+    } else if (query) {
+      const [events, eventsCount] = await db.$transaction([
+        db.event.findMany({
+          where: {
+            title: {
+              contains: query,
+              mode: 'insensitive',
+            },
+            active: true,
+            members: {
+              some: {
+                userId,
+              },
+            },
+          },
+          skip: skipAmount,
+          take: limit,
+          orderBy: {
+            createdAt: 'desc',
+          },
+          include: {
+            user: true,
+            category: true,
+          },
+        }),
+        db.event.count({
+          where: {
+            title: {
+              contains: query,
+              mode: 'insensitive',
+            },
+            active: true,
+            members: {
+              some: {
+                userId,
+              },
+            },
+          },
+          skip: skipAmount,
+          take: limit,
+          orderBy: {
+            createdAt: 'desc',
+          },
+        }),
+      ])
+
+      return {
+        data: JSON.parse(JSON.stringify(events)),
+        totalPages: Math.ceil(eventsCount / limit),
+      }
     } else {
       const [events, eventsCount] = await db.$transaction([
         db.event.findMany({
@@ -165,7 +165,7 @@ export async function getAllEvents({
           skip: skipAmount,
           take: limit,
           orderBy: {
-            createdAt: "desc",
+            createdAt: 'desc',
           },
           include: {
             user: true,
@@ -184,18 +184,18 @@ export async function getAllEvents({
           skip: skipAmount,
           take: limit,
           orderBy: {
-            createdAt: "desc",
+            createdAt: 'desc',
           },
         }),
-      ]);
+      ])
 
       return {
         data: JSON.parse(JSON.stringify(events)),
         totalPages: Math.ceil(eventsCount / limit),
-      };
+      }
     }
   } catch (error) {
-    handleError(error);
+    handleError(error)
   }
 }
 
@@ -206,8 +206,8 @@ export async function createEvent({ userId, event, path }: CreateEventParams) {
       where: {
         id: userId,
       },
-    });
-    if (!organizer) throw new Error("Organizer not found");
+    })
+    if (!organizer) throw new Error('Organizer not found')
 
     const newEvent = await db.event.create({
       data: {
@@ -218,12 +218,12 @@ export async function createEvent({ userId, event, path }: CreateEventParams) {
           create: [{ userId: userId, role: MemberRole.ADMIN }],
         },
       },
-    });
+    })
 
-    revalidatePath(path);
-    return JSON.parse(JSON.stringify(newEvent));
+    revalidatePath(path)
+    return JSON.parse(JSON.stringify(newEvent))
   } catch (error) {
-    handleError(error);
+    handleError(error)
   }
 }
 
@@ -244,12 +244,12 @@ export async function getEventById(eventId: string) {
           },
         },
       },
-    });
+    })
 
-    if (!event) throw new Error("Event not found");
-    return JSON.parse(JSON.stringify(event));
+    if (!event) throw new Error('Event not found')
+    return JSON.parse(JSON.stringify(event))
   } catch (error) {
-    handleError(error);
+    handleError(error)
   }
 }
 
@@ -261,10 +261,10 @@ export async function updateEvent({ userId, event, path }: UpdateEventParams) {
         id: event.id as string,
         active: true,
       },
-    });
+    })
 
     if (!eventToUpdate || eventToUpdate.userId !== userId) {
-      throw new Error("Unauthorized or event not found");
+      throw new Error('Unauthorized or event not found')
     }
 
     const updatedEvent = await db.event.update({
@@ -275,12 +275,12 @@ export async function updateEvent({ userId, event, path }: UpdateEventParams) {
       data: {
         ...event,
       },
-    });
+    })
 
-    revalidatePath(path);
-    return JSON.parse(JSON.stringify(updatedEvent));
+    revalidatePath(path)
+    return JSON.parse(JSON.stringify(updatedEvent))
   } catch (error) {
-    handleError(error);
+    handleError(error)
   }
 }
 
@@ -299,13 +299,13 @@ export async function deleteEvent({ eventId, path }: DeleteEventParams) {
           },
         },
       },
-    });
+    })
 
     if (event?.members?.length === 0) {
-      return;
+      return
     }
 
-    const PAYSTACK_SECRET_KEY = process.env.PAYSTACK_SECRET_KEY || "";
+    const PAYSTACK_SECRET_KEY = process.env.PAYSTACK_SECRET_KEY || ''
 
     // Refund deposits to members
     event?.members.forEach(async (member) => {
@@ -314,55 +314,55 @@ export async function deleteEvent({ eventId, path }: DeleteEventParams) {
           buyerId: member.userId,
           eventId: event.id,
         },
-      });
+      })
 
       if (!order) {
-        throw new Error("Order not found.");
+        throw new Error('Order not found.')
       }
 
       // Calculate the total amount to refund (deposit - transaction fee)
-      const totalRefundAmount = Number(event?.price) - order.transaction_fee;
+      const totalRefundAmount = Number(event?.price) - order.transaction_fee
 
       try {
-        const response = await fetch("https://api.paystack.co/refund", {
-          method: "POST",
+        const response = await fetch('https://api.paystack.co/refund', {
+          method: 'POST',
           headers: {
             Authorization: `Bearer ${PAYSTACK_SECRET_KEY}`,
-            "Content-Type": "application/json",
+            'Content-Type': 'application/json',
           },
           body: JSON.stringify({
             transaction: member.paymentIntentId,
             amount: totalRefundAmount * 100,
           }),
-        });
+        })
 
         if (!response.ok) {
-          const errorData = await response.json();
-          console.error("Refund error:", errorData);
-          throw new Error("Refund failed");
+          const errorData = await response.json()
+          console.error('Refund error:', errorData)
+          throw new Error('Refund failed')
         }
 
-        const data = await response.json();
+        const data = await response.json()
         if (data) {
-          sendEventDeletionEmail(member.user.email!, event);
+          sendEventDeletionEmail(member.user.email!, event)
         }
         console.log(
           `Refunded $${event.price} to member ${member.id} and sent email notification.`
-        );
+        )
 
         const deletedEvent = await db.event.delete({
           where: {
             id: eventId,
           },
-        });
+        })
 
-        if (deletedEvent) revalidatePath(path);
+        if (deletedEvent) revalidatePath(path)
       } catch (error) {
-        console.error(`Error refunding member ${member.id}:`, error);
+        console.error(`Error refunding member ${member.id}:`, error)
       }
-    });
+    })
   } catch (error) {
-    handleError(error);
+    handleError(error)
   }
 }
 
@@ -392,7 +392,7 @@ export async function deleteEventAttendance({
           },
         },
       },
-    });
+    })
 
     if (event) {
       const order = await db.order.findFirst({
@@ -400,21 +400,21 @@ export async function deleteEventAttendance({
           buyerId: userId,
           eventId: event.id,
         },
-      });
+      })
 
       if (!order) {
-        throw new Error("Order not found.");
+        throw new Error('Order not found.')
       }
 
       // Deduct 20%
-      const deduction = Number(event?.price) * 0.2;
+      const deduction = Number(event?.price) * 0.2
       const remainingAmount =
-        Number(event?.price) * 0.5 - deduction - order.transaction_fee;
+        Number(event?.price) * 0.5 - deduction - order.transaction_fee
       // Amount each member receives
-      const splitAmount = remainingAmount / event?.members?.length;
-      console.log(deduction, remainingAmount, splitAmount);
+      const splitAmount = remainingAmount / event?.members?.length
+      console.log(deduction, remainingAmount, splitAmount)
 
-      const PAYSTACK_SECRET_KEY = process.env.PAYSTACK_SECRET_KEY || "";
+      const PAYSTACK_SECRET_KEY = process.env.PAYSTACK_SECRET_KEY || ''
 
       const member = await db.member.findFirst({
         where: {
@@ -424,32 +424,32 @@ export async function deleteEventAttendance({
         include: {
           user: true,
         },
-      });
+      })
 
       if (!member) {
-        return;
+        return
       }
 
       try {
-        const response = await fetch("https://api.paystack.co/refund", {
-          method: "POST",
+        const response = await fetch('https://api.paystack.co/refund', {
+          method: 'POST',
           headers: {
             Authorization: `Bearer ${PAYSTACK_SECRET_KEY}`,
-            "Content-Type": "application/json",
+            'Content-Type': 'application/json',
           },
           body: JSON.stringify({
             transaction: member.paymentIntentId,
             amount: (Number(event.price) / 2) * 100,
           }),
-        });
+        })
 
         if (!response.ok) {
-          const errorData = await response.json();
-          console.error("Refund error:", errorData);
-          throw new Error("Refund failed");
+          const errorData = await response.json()
+          console.error('Refund error:', errorData)
+          throw new Error('Refund failed')
         }
 
-        const data = await response.json();
+        const data = await response.json()
         if (data) {
           for (const member of event?.members) {
             await db.user.update({
@@ -459,13 +459,13 @@ export async function deleteEventAttendance({
                   increment: splitAmount,
                 },
               },
-            });
+            })
           }
-          sendEventAttendanceDeletionEmail(member.user.email!, event);
+          sendEventAttendanceDeletionEmail(member.user.email!, event)
         }
         console.log(
           `Refunded $${event.price} to member ${member.id} and sent email notification.`
-        );
+        )
 
         const deleteMember = await db.member.delete({
           where: {
@@ -474,15 +474,15 @@ export async function deleteEventAttendance({
               eventId,
             },
           },
-        });
+        })
 
-        if (deleteMember) revalidatePath(path);
+        if (deleteMember) revalidatePath(path)
       } catch (error) {
-        console.error(`Error refunding member ${member.id}:`, error);
+        console.error(`Error refunding member ${member.id}:`, error)
       }
     }
   } catch (error) {
-    handleError(error);
+    handleError(error)
   }
 }
 
@@ -502,11 +502,11 @@ export async function stopEventAttendance({
       data: {
         stop_attendance: true,
       },
-    });
+    })
 
-    if (event) revalidatePath(path);
+    if (event) revalidatePath(path)
   } catch (error) {
-    handleError(error);
+    handleError(error)
   }
 }
 
@@ -526,11 +526,11 @@ export async function enableEventAttendance({
       data: {
         stop_attendance: false,
       },
-    });
+    })
 
-    if (event) revalidatePath(path);
+    if (event) revalidatePath(path)
   } catch (error) {
-    handleError(error);
+    handleError(error)
   }
 }
 
@@ -541,7 +541,7 @@ export async function getEventsByUser({
   page,
 }: GetEventsByUserParams) {
   try {
-    const skipAmount = (Number(page) - 1) * limit;
+    const skipAmount = (Number(page) - 1) * limit
     const [events, eventsCount] = await db.$transaction([
       db.event.findMany({
         where: {
@@ -551,7 +551,7 @@ export async function getEventsByUser({
         skip: skipAmount,
         take: limit,
         orderBy: {
-          createdAt: "desc",
+          createdAt: 'desc',
         },
         include: {
           user: true,
@@ -566,17 +566,17 @@ export async function getEventsByUser({
         skip: skipAmount,
         take: limit,
         orderBy: {
-          createdAt: "desc",
+          createdAt: 'desc',
         },
       }),
-    ]);
+    ])
 
     return {
       data: JSON.parse(JSON.stringify(events)),
       totalPages: Math.ceil(eventsCount / limit),
-    };
+    }
   } catch (error) {
-    handleError(error);
+    handleError(error)
   }
 }
 
@@ -589,12 +589,12 @@ export async function getRelatedEventsByCategory({
   page = 1,
 }: GetRelatedEventsByCategoryParams) {
   try {
-    const skipAmount = (Number(page) - 1) * limit;
+    const skipAmount = (Number(page) - 1) * limit
     const categoryData = await db.category.findFirst({
       where: {
         id: categoryId as string,
       },
-    });
+    })
     const [events, eventsCount] = await db.$transaction([
       db.event.findMany({
         where: {
@@ -612,7 +612,7 @@ export async function getRelatedEventsByCategory({
         skip: skipAmount,
         take: limit,
         orderBy: {
-          createdAt: "desc",
+          createdAt: 'desc',
         },
         include: {
           user: true,
@@ -635,17 +635,17 @@ export async function getRelatedEventsByCategory({
         skip: skipAmount,
         take: limit,
         orderBy: {
-          createdAt: "desc",
+          createdAt: 'desc',
         },
       }),
-    ]);
+    ])
 
     return {
       data: JSON.parse(JSON.stringify(events)),
       totalPages: Math.ceil(eventsCount / limit),
-    };
+    }
   } catch (error) {
-    handleError(error);
+    handleError(error)
   }
 }
 
@@ -668,20 +668,20 @@ export async function sendMessage({
         },
       },
     },
-  });
+  })
 
   if (event) {
     event?.members.forEach(async (member) => {
       try {
-        await sendEventMessageEmail(member?.user?.email!, message, event);
-        console.log(`Message has been sent to all members of the event.`);
+        await sendEventMessageEmail(member?.user?.email!, message, event)
+        console.log(`Message has been sent to all members of the event.`)
       } catch (error) {
-        handleError(error);
+        handleError(error)
       }
-    });
+    })
 
-    return { status: 200 };
+    return { status: 200 }
   } else {
-    return { error: "Event not found" };
+    return { error: 'Event not found' }
   }
 }

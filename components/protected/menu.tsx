@@ -1,36 +1,36 @@
-"use client";
+'use client'
 
-import Link from "next/link";
-import { Ellipsis, LogOut } from "lucide-react";
-import { usePathname } from "next/navigation";
+import Link from 'next/link'
+import { Ellipsis, LogOut } from 'lucide-react'
+import { usePathname } from 'next/navigation'
 
-import { cn } from "@/lib/utils";
-import { getMenuList } from "@/lib/menu-list";
-import { Button } from "@/components/ui/button";
-import { ScrollArea } from "@/components/ui/scroll-area";
-import { CollapseMenuButton } from "@/components/protected/collapse-menu-button";
+import { cn } from '@/lib/utils'
+import { getMenuList } from '@/lib/menu-list'
+import { Button } from '@/components/ui/button'
+import { ScrollArea } from '@/components/ui/scroll-area'
+import { CollapseMenuButton } from '@/components/protected/collapse-menu-button'
 import {
   Tooltip,
   TooltipTrigger,
   TooltipContent,
   TooltipProvider,
-} from "@/components/ui/tooltip";
-import { LogoutButton } from "@/components/auth/logout-button";
+} from '@/components/ui/tooltip'
+import { LogoutButton } from '@/components/auth/logout-button'
 
 interface MenuProps {
-  isOpen: boolean | undefined;
+  isOpen: boolean | undefined
 }
 
 export const Menu = ({ isOpen }: MenuProps) => {
-  const pathname = usePathname();
-  const menuList = getMenuList(pathname!);
+  const pathname = usePathname()
+  const menuList = getMenuList(pathname!)
 
   return (
-    <ScrollArea className="[&>div>div[style]]:!block">
+    <ScrollArea className="[&>div>div[style]]:!block pr-2">
       <nav className="mt-8 h-full w-full">
         <ul className="flex flex-col min-h-[calc(100vh-48px-36px-16px-32px)] lg:min-h-[calc(100vh-32px-40px-32px)] items-start space-y-1 px-2">
           {menuList.map(({ groupLabel, menus }, index) => (
-            <li className={cn("w-full", groupLabel ? "pt-5" : "")} key={index}>
+            <li className={cn('w-full', groupLabel ? 'pt-5' : '')} key={index}>
               {(isOpen && groupLabel) || isOpen === undefined ? (
                 <p className="text-sm font-medium text-muted-foreground px-4 pb-2 max-w-[248px] truncate">
                   {groupLabel}
@@ -59,22 +59,22 @@ export const Menu = ({ isOpen }: MenuProps) => {
                         <Tooltip delayDuration={100}>
                           <TooltipTrigger asChild>
                             <Button
-                              variant={active ? "secondary" : "ghost"}
+                              variant={active ? 'secondary' : 'ghost'}
                               className="w-full justify-start h-10 mb-1"
                               asChild
                             >
                               <Link href={href}>
                                 <span
-                                  className={cn(isOpen === false ? "" : "mr-4")}
+                                  className={cn(isOpen === false ? '' : 'mr-4')}
                                 >
                                   <Icon size={18} />
                                 </span>
                                 <p
                                   className={cn(
-                                    "max-w-[200px] truncate",
+                                    'max-w-[200px] truncate',
                                     isOpen === false
-                                      ? "-translate-x-96 opacity-0"
-                                      : "translate-x-0 opacity-100"
+                                      ? '-translate-x-96 opacity-0'
+                                      : 'translate-x-0 opacity-100'
                                   )}
                                 >
                                   {label}
@@ -108,14 +108,12 @@ export const Menu = ({ isOpen }: MenuProps) => {
             <TooltipProvider disableHoverableContent>
               <Tooltip delayDuration={100}>
                 <TooltipTrigger asChild>
-                  <Button
-                    className="w-full justify-center h-10 mt-5 bg-primary"
-                  >
+                  <Button className="w-full justify-center h-10 mt-5 bg-primary">
                     <LogoutButton>
                       <p
                         className={cn(
-                          "whitespace-nowrap",
-                          isOpen === false ? "opacity-0 hidden" : "opacity-100"
+                          'whitespace-nowrap',
+                          isOpen === false ? 'opacity-0 hidden' : 'opacity-100'
                         )}
                       >
                         Sign Out
@@ -132,5 +130,5 @@ export const Menu = ({ isOpen }: MenuProps) => {
         </ul>
       </nav>
     </ScrollArea>
-  );
-};
+  )
+}

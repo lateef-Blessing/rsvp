@@ -1,16 +1,15 @@
-import { SectionTitle } from "@/components/root/section-title";
-import { BellRing, BookX, Calendar, Plus, Users } from "lucide-react";
+import { SectionTitle } from '@/components/root/section-title'
 
 type Feature = {
-  id: number;
-  icon: JSX.Element;
-  title: string;
-  paragraph: string;
-};
+  id: number
+  icon: JSX.Element
+  title: string
+  paragraph: string
+}
 
 export function Features() {
   return (
-    <section className="py-20 md:py-[120px]" id="features">
+    <section className="py-10 md:py-[80px]" id="features">
       <div className="container">
         <SectionTitle
           subtitle="Features"
@@ -23,34 +22,29 @@ Risk-free for attendees (full refund for cancellations)"
           center
         />
 
-        <div className="-mx-4 mt-12 flex flex-wrap lg:mt-20">
+        <div className="max-w-sm mx-auto py-10 md:py-[80px] grid gap-4 md:grid-cols-2 lg:grid-cols-4 lg:gap-4 items-center md:max-w-2xl lg:max-w-none">
           {featuresData.map((feature, i) => (
             <SingleFeature key={i} feature={feature} />
           ))}
         </div>
       </div>
     </section>
-  );
+  )
 }
 
 const SingleFeature = ({ feature }: { feature: Feature }) => {
-  const { icon, title, paragraph } = feature;
+  const { icon, title, paragraph } = feature
   return (
-    <div
-      className="w-full px-4 md:w-1/2 lg:w-1/4 rounded-xl py-[30px] shadow-md sm:px-[30px] bg-zinc-400/10 m-2"
-      data-wow-delay=".1s"
-    >
-      <div className="group mb-12">
-        <div className="relative z-10 mb-8 flex h-[70px] w-[70px] items-center justify-center rounded-2xl bg-primary">
-          <span className="absolute left-0 top-0 z-[-1] mb-8 flex h-[70px] w-[70px] rotate-[25deg] items-center justify-center rounded-2xl bg-primary bg-opacity-20 duration-300 group-hover:rotate-45"></span>
-          {icon}
-        </div>
-        <h3 className="mb-3 text-xl font-bold">{title}</h3>
-        <p className="mb-8 lg:mb-11">{paragraph}</p>
+    <div className="group relative flex flex-col items-center px-4 rounded-xl py-[30px] shadow-md sm:px-[30px] bg-zinc-400/10">
+      <div className="relative z-10 mb-8 flex h-[70px] w-[70px] items-center justify-center  rounded-2xl bg-primary">
+        <span className="absolute left-0 top-0 z-[-1] mb-8 flex h-[70px] w-[70px] rotate-[25deg] items-center justify-center rounded-2xl bg-primary bg-opacity-20 duration-300 group-hover:rotate-45"></span>
+        {icon}
       </div>
+      <h3 className="font-bold mb-2">{title}</h3>
+      <p className="text-lg text-center">{paragraph}</p>
     </div>
-  );
-};
+  )
+}
 
 const EventCreationIcon = () => (
   <span
@@ -60,7 +54,7 @@ const EventCreationIcon = () => (
   >
     📝
   </span>
-);
+)
 
 const AttendeesManagement = () => (
   <span
@@ -70,7 +64,7 @@ const AttendeesManagement = () => (
   >
     💼
   </span>
-);
+)
 
 const CancellationIcon = () => (
   <span
@@ -80,41 +74,41 @@ const CancellationIcon = () => (
   >
     ❌
   </span>
-);
+)
 
 const RemindersIcon = () => (
   <span role="img" aria-label="Reminders" className="text-[40px] text-center">
     ⏰
   </span>
-);
+)
 
 const featuresData: Feature[] = [
   {
     id: 1,
     icon: <EventCreationIcon />,
-    title: "Event Creation",
+    title: 'Event Creation',
     paragraph:
-      "Allow creators to set event details (date, time, location, description). Set attendee fee amount. Generate unique event link for invitations",
+      'Allow creators to set event details (date, time, location, description). Set attendee fee amount. Generate unique event link',
   },
   {
     id: 2,
     icon: <AttendeesManagement />,
-    title: "Attendee Management",
+    title: 'Attendee Management',
     paragraph:
-      "Allow attendees to RSVP via link. Charge attendee fee upon RSVP confirmation. Display attendee list and status (confirmed, pending, flaked)",
+      'Allow attendees to RSVP via link. Charge attendee fee upon RSVP confirmation. Display attendee list and status',
   },
   {
     id: 3,
     icon: <CancellationIcon />,
-    title: "Cancellation and Refunds",
+    title: 'Cancellation and Refunds',
     paragraph:
-      "Allow creators to cancel events. Automatically refund fees to all participants upon cancellation",
+      'Allow creators to cancel events. Automatically notify and refund fees to all participants upon cancellation',
   },
   {
     id: 4,
     icon: <RemindersIcon />,
-    title: "Notifications and Reminders",
+    title: 'Notifications and Reminders',
     paragraph:
-      "Send event reminders and updates to attendees. Notify attendees of flaking or cancellation",
+      'Send event reminders(24hrs, 48hrs, 7days) and updates to attendees. Notify attendees of flaking or cancellation',
   },
-];
+]

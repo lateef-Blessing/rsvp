@@ -1,17 +1,17 @@
-"use client";
+'use client'
 
-import Link from "next/link";
+import Link from 'next/link'
 
-import { useCurrentUser } from "@/hooks/use-current-user";
-import { UserInfo } from "@/components/protected/user-info";
-import { ContentLayout } from "@/components/protected/content-layout";
-import { formatPrice } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
+import { useCurrentUser } from '@/hooks/use-current-user'
+import { UserInfo } from '@/components/protected/user-info'
+import { ContentLayout } from '@/components/protected/content-layout'
+import { formatPrice } from '@/lib/utils'
+import { Button } from '@/components/ui/button'
 
 const Admin = () => {
-  const user = useCurrentUser();
+  const user = useCurrentUser()
   if (!user) {
-    return null;
+    return null
   }
 
   return (
@@ -31,20 +31,24 @@ const Admin = () => {
           </div>
         </div>
         <div className="mt-4">
-          <Button className="w-full bg-bgPrimary text-white hover:bg-bgPrimary/80">
-            <Link href="/account/settings">Edit Profile</Link>
-          </Button>
+          <Link href="/account/settings">
+            <Button className="w-full bg-bgPrimary hover:bg-bgPrimary/50">
+              Edit Profile
+            </Button>
+          </Link>
         </div>
         <div className="mt-2">
-          <Button className="w-full bg-white text-black hover:bg-white/80">
-            <Link href="/account/withdraw">Withdraw</Link>
-          </Button>
+          <Link href="/account/withdraw">
+            <Button className="w-full bg-green-500 hover:bg-green-500/50">
+              Withdraw
+            </Button>
+          </Link>
         </div>
       </div>
 
       <UserInfo user={user} />
     </ContentLayout>
-  );
-};
+  )
+}
 
-export default Admin;
+export default Admin
