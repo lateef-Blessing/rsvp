@@ -22,7 +22,7 @@ export default async function EventsOrganizedPage({
         <EventsCollection
           data={events?.data}
           emptyTitle="No Events Found"
-          emptyStateSubtext="Create one now"
+          emptyStateSubtext="create_button"
           collectionType="Events_Organized"
           limit={6}
           page={page}

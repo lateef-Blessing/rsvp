@@ -25,7 +25,7 @@ export const SheetMenu = () => {
             variant="link"
             asChild
           >
-            <Link href="/organized" className="flex items-center gap-2">
+            <Link href="/" className="flex items-center gap-2">
               <img src="/bl-nobg.png" alt="logo" className="w-44 h-44" />
             </Link>
           </Button>

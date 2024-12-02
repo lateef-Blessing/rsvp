@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import { LogOut, User } from "lucide-react";
+import { LayoutDashboard, LogOut, User } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -67,6 +67,12 @@ export const UserButton = () => {
             <Link href="/account" className="flex items-center">
               <User className="w-4 h-4 mr-3 text-muted-foreground" />
               Account
+            </Link>
+          </DropdownMenuItem>
+          <DropdownMenuItem className="hover:cursor-pointer" asChild>
+            <Link href="/dashboard" className="flex items-center">
+              <LayoutDashboard className="w-4 h-4 mr-3 text-muted-foreground" />
+              Dashboard
             </Link>
           </DropdownMenuItem>
         </DropdownMenuGroup>

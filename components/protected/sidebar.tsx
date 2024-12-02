@@ -34,7 +34,7 @@ export const Sidebar = () => {
           variant="link"
           asChild
         >
-          <Link href="/organized" className="flex items-center">
+          <Link href="/" className="flex items-center">
             <img
               src="/bl-nobg.png"
               alt="logo"

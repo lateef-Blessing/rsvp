@@ -1,77 +1,80 @@
-"use client";
+'use client'
 
-import Link from "next/link";
-import { useState, useEffect } from "react";
-import { PanelLeft } from "lucide-react";
+import Link from 'next/link'
+import { useState, useEffect } from 'react'
+import { PanelLeft } from 'lucide-react'
 
 import {
   NavigationMenu,
   NavigationMenuItem,
   NavigationMenuList,
-} from "@/components/ui/navigation-menu";
+} from '@/components/ui/navigation-menu'
 import {
   Sheet,
   SheetContent,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-} from "@/components/ui/sheet";
-import { buttonVariants } from "@/components/ui/button";
-import { ThemeToggle } from "@/components/theme-toggle";
-import { cn } from "@/lib/utils";
+} from '@/components/ui/sheet'
+import { buttonVariants } from '@/components/ui/button'
+import { ThemeToggle } from '@/components/theme-toggle'
+import { cn } from '@/lib/utils'
+import { useCurrentUser } from '@/hooks/use-current-user'
+import { UserButton } from '../protected/user-button'
 
 interface RouteProps {
-  href: string;
-  label: string;
+  href: string
+  label: string
 }
 
 const routeList: RouteProps[] = [
   {
-    href: "#features",
-    label: "Features",
+    href: '#features',
+    label: 'Features',
   },
   {
-    href: "#about",
-    label: "About Us",
+    href: '#about',
+    label: 'About Us',
   },
   {
-    href: "#workflow",
-    label: "Workflow",
+    href: '#workflow',
+    label: 'Workflow',
   },
   {
-    href: "#testimonials",
-    label: "Testimonials",
+    href: '#testimonials',
+    label: 'Testimonials',
   },
   {
-    href: "#faqs",
-    label: "FAQs",
+    href: '#faqs',
+    label: 'FAQs',
   },
-];
+]
 
 export const Navbar = () => {
-  const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [sticky, setSticky] = useState(false);
+  const [isOpen, setIsOpen] = useState<boolean>(false)
+  const [sticky, setSticky] = useState(false)
+  const user = useCurrentUser()
 
   // Sticky Navbar
   const navbarStickyHandler = () => {
     if (window.scrollY >= 80) {
-      setSticky(true);
+      setSticky(true)
     } else {
-      setSticky(false);
+      setSticky(false)
     }
-  };
+  }
 
   useEffect(() => {
-    window.addEventListener("scroll", navbarStickyHandler);
-  });
+    window.addEventListener('scroll', navbarStickyHandler)
+  })
 
   return (
     <header
       className={cn(
-        "sticky top-0 z-40 w-full bg-white dark:bg-background",
+        'sticky top-0 z-40 w-full bg-white dark:bg-background',
         sticky
-          ? "fixed z-[999] backdrop-blur-[5px] border-b-[1px] dark:border-b-slate-700"
-          : "absolute"
+          ? 'fixed z-[999] backdrop-blur-[5px] border-b-[1px] dark:border-b-slate-700'
+          : 'absolute'
       )}
     >
       <NavigationMenu className="mx-auto">
@@ -111,18 +114,21 @@ export const Navbar = () => {
                       key={label}
                       href={href}
                       onClick={() => setIsOpen(false)}
-                      className={buttonVariants({ variant: "ghost" })}
+                      className={buttonVariants({ variant: 'ghost' })}
                     >
                       {label}
                     </Link>
                   ))}
-                  <Link
-                    rel="noreferrer noopener"
-                    href="/auth/login"
-                    className="py-2 px-4 rounded-lg border-2 border-bgPrimary bg-transparent hover:bg-primary transition-all"
-                  >
-                    Sign in
-                  </Link>
+                  {user && <UserButton />}
+                  {!user && (
+                    <Link
+                      rel="noreferrer noopener"
+                      href="/auth/login"
+                      className="py-2 px-4 rounded-lg border-2 border-bgPrimary bg-transparent hover:bg-primary transition-all"
+                    >
+                      Sign in
+                    </Link>
+                  )}
                 </nav>
               </SheetContent>
             </Sheet>
@@ -135,29 +141,34 @@ export const Navbar = () => {
                 rel="noreferrer noopener"
                 href={route.href}
                 key={i}
-                className={`text-[17px] ${buttonVariants({
-                  variant: "ghost",
-                })}`}
+                className={`text-[17px] bg-zinc-400/10 hover:bg-transparent ${buttonVariants(
+                  {
+                    variant: 'ghost',
+                  }
+                )}`}
               >
                 {route.label}
               </Link>
             ))}
           </nav>
 
-
           <div className="hidden md:flex items-center gap-4">
             <ThemeToggle />
 
-            <Link
-              rel="noreferrer noopener"
-              href="/auth/login"
-              className="py-2 px-4 rounded-lg border-2 border-bgPrimary bg-transparent hover:bg-primary transition-all"
-            >
-              Sign in
-            </Link>
+            {user && <UserButton />}
+
+            {!user && (
+              <Link
+                rel="noreferrer noopener"
+                href="/auth/login"
+                className="py-2 px-4 rounded-lg border-2 border-bgPrimary bg-transparent hover:bg-primary transition-all"
+              >
+                Sign in
+              </Link>
+            )}
           </div>
         </NavigationMenuList>
       </NavigationMenu>
     </header>
-  );
-};
+  )
+}

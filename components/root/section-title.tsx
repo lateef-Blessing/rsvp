@@ -20,7 +20,7 @@ export const SectionTitle = ({
         style={{ maxWidth: width }}
       >
         {subtitle && (
-          <span className="mb-2 block text-lg font-semibold text-primary">
+          <span className="mb-2 text-lg block font-semibold text-primary px-2 py-1 bg-zinc-400/10 w-max rounded-md mx-auto">
             {subtitle}
           </span>
         )}
