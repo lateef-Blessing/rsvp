@@ -141,7 +141,7 @@ export const Navbar = () => {
                 rel="noreferrer noopener"
                 href={route.href}
                 key={i}
-                className={`text-[17px] bg-zinc-400/10 hover:bg-transparent ${buttonVariants(
+                className={`text-[17px] bg-zinc-400/10 hover:bg-transparent hover:text-primary ${buttonVariants(
                   {
                     variant: 'ghost',
                   }

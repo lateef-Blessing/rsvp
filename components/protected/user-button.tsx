@@ -37,7 +37,7 @@ export const UserButton = () => {
           <TooltipTrigger asChild>
             <DropdownMenuTrigger asChild>
               <Button
-                className="relative h-8 w-8 rounded-full"
+                className="relative h-8 w-8 rounded-full hover:opacity-70"
               >
                 <Avatar className="h-8 w-8">
                   <AvatarImage src={user?.image || ""} alt="Avatar" />
