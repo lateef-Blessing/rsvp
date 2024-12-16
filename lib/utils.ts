@@ -117,20 +117,24 @@ export function removeKeysFromQuery({
     { skipNull: true }
   )
 }
+
 export function constructMetadata({
   title = 'Atendeo - Say Goodbye to No-Shows: The Smart Way to Ensure Event Attendance',
   description = 'Boost commitment, reward attendees, and manage events effortlessly with our innovative RSVP system',
+  keywords = 'Event creation, Events planning, Attend events',
   image = '/thumbnail.png',
   icons = '/favicon.ico',
 }: {
   title?: string
   description?: string
+  keywords?: string
   image?: string
   icons?: string
 } = {}): Metadata {
   return {
     title,
     description,
+    keywords,
     openGraph: {
       type: 'website',
       locale: 'en_US',

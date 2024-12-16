@@ -32,6 +32,10 @@ export default async function RootLayout({
             content={metadata.description || 'Default description'}
           />
           <meta
+            name="keywords"
+            content={(metadata.keywords as string) || 'Default keywords'}
+          />
+          <meta
             name="viewport"
             content="width=device-width, initial-scale=1.0"
           />
