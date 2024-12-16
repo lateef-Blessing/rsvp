@@ -1,24 +1,24 @@
-import { type ClassValue, clsx } from "clsx"
-import { twMerge } from "tailwind-merge"
-import { formatDate, formatDistanceToNowStrict } from "date-fns";
-import qs from "query-string";
+import { type ClassValue, clsx } from 'clsx'
+import { twMerge } from 'tailwind-merge'
+import { formatDate, formatDistanceToNowStrict } from 'date-fns'
+import qs from 'query-string'
 import { Metadata } from 'next'
 
-import { RemoveUrlQueryParams, UrlQueryParams } from "@/types";
+import { RemoveUrlQueryParams, UrlQueryParams } from '@/types'
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
 export function formatRelativeDate(from: Date) {
-  const currentDate = new Date();
+  const currentDate = new Date()
   if (currentDate.getTime() - from.getTime() < 24 * 60 * 60 * 1000) {
-    return formatDistanceToNowStrict(from, { addSuffix: true });
+    return formatDistanceToNowStrict(from, { addSuffix: true })
   } else {
     if (currentDate.getFullYear() === from.getFullYear()) {
-      return formatDate(from, "MMM d");
+      return formatDate(from, 'MMM d')
     } else {
-      return formatDate(from, "MMM d, yyyy");
+      return formatDate(from, 'MMM d, yyyy')
     }
   }
 }
@@ -51,11 +51,20 @@ export const formatDateTime = (dateString: Date) => {
     hour12: true, // use 12-hour clock (true) or 24-hour clock (false)
   }
 
-  const formattedDateTime: string = new Date(dateString).toLocaleString('en-US', dateTimeOptions)
+  const formattedDateTime: string = new Date(dateString).toLocaleString(
+    'en-US',
+    dateTimeOptions
+  )
 
-  const formattedDate: string = new Date(dateString).toLocaleString('en-US', dateOptions)
+  const formattedDate: string = new Date(dateString).toLocaleString(
+    'en-US',
+    dateOptions
+  )
 
-  const formattedTime: string = new Date(dateString).toLocaleString('en-US', timeOptions)
+  const formattedTime: string = new Date(dateString).toLocaleString(
+    'en-US',
+    timeOptions
+  )
 
   return {
     dateTime: formattedDateTime,
@@ -76,7 +85,6 @@ export const formatPrice = (price: string) => {
   return formattedPrice
 }
 
-
 export function formUrlQuery({ params, key, value }: UrlQueryParams) {
   const currentUrl = qs.parse(params)
 
@@ -91,10 +99,13 @@ export function formUrlQuery({ params, key, value }: UrlQueryParams) {
   )
 }
 
-export function removeKeysFromQuery({ params, keysToRemove }: RemoveUrlQueryParams) {
+export function removeKeysFromQuery({
+  params,
+  keysToRemove,
+}: RemoveUrlQueryParams) {
   const currentUrl = qs.parse(params)
 
-  keysToRemove.forEach(key => {
+  keysToRemove.forEach((key) => {
     delete currentUrl[key]
   })
 
@@ -106,7 +117,6 @@ export function removeKeysFromQuery({ params, keysToRemove }: RemoveUrlQueryPara
     { skipNull: true }
   )
 }
-
 export function constructMetadata({
   title = 'Atendeo - Say Goodbye to No-Shows: The Smart Way to Ensure Event Attendance',
   description = 'Boost commitment, reward attendees, and manage events effortlessly with our innovative RSVP system',
@@ -122,18 +132,32 @@ export function constructMetadata({
     title,
     description,
     openGraph: {
+      type: 'website',
+      locale: 'en_US',
+      siteName: 'Atendeo',
       title,
       description,
       images: [{ url: image }],
     },
     twitter: {
       card: 'summary_large_image',
+      site: '@devwhizz',
+      creator: '@devwhizz',
       title,
       description,
       images: [image],
-      creator: '@devwhizz',
     },
-    icons,
-    metadataBase: new URL("https://atendeo.com/")
+    icons: {
+      icon: icons,
+      shortcut: icons,
+    },
+    metadataBase: new URL('https://atendeo.com/'),
+    alternates: {
+      canonical: 'https://atendeo.com/',
+    },
+    viewport: {
+      width: 'device-width',
+      initialScale: 1,
+    },
   }
 }

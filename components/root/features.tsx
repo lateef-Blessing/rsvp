@@ -88,7 +88,7 @@ const featuresData: Feature[] = [
     icon: <EventCreationIcon />,
     title: 'Event Creation',
     paragraph:
-      'Allow creators to set event details (date, time, location, description). Set attendee fee amount. Generate unique event link',
+      'Allow creators to set event details (date, time, location, description). Set attendee fee amount. Generate event link',
   },
   {
     id: 2,

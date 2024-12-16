@@ -9,6 +9,8 @@ const nextConfig = {
       },
     ],
   },
+  trailingSlash: true, // Helps with consistent URLs
+  reactStrictMode: true, // Best practice for Next.js
 };
 
 export default nextConfig;

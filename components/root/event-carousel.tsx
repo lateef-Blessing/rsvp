@@ -19,7 +19,7 @@ const events = [
 
 export const EventCarousel = () => {
   return (
-    <div className="-mx-4 mt-10 container text-center">
+    <div className="mx-auto mt-10 container text-center">
       <Swiper
         modules={[Pagination, Autoplay]}
         spaceBetween={15}
