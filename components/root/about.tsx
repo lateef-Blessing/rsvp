@@ -12,15 +12,12 @@ export function About() {
             <div className="w-full px-4 lg:w-1/2">
               <div className="mb-12 max-w-[540px] lg:mb-0">
                 <h2 className="mb-5 text-3xl font-bold leading-tight sm:text-[40px] sm:leading-[1.2]">
-                  Short Description About Us:
+                About Us:
                 </h2>
                 <p className="mb-10 text-base leading-relaxed">
-                  At ATENDEO we're revolutionizing event management. We
-                  understand the frustration of no-shows and the impact they
-                  have on events of all sizes. Our platform empowers event
-                  creators with a unique solution:
+                At ATENDEO, we make event planning simple with smart, unique solutions. Trusted by over 10k users worldwide for organizing wedding RSVPs, corporate functions, or private parties, we’ve got you covered. We ensure everyone attending your event is committed to making it a success.
                   <br />
-                  <br />a fair, automated system that encourages attendance and
+                  <br />A fair, automated system that encourages attendance and
                   rewards committed participants at all times.
                 </p>
 

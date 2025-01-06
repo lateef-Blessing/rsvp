@@ -14,11 +14,7 @@ export function Features() {
         <SectionTitle
           subtitle="Features"
           title="Main Features Of ATENDEO"
-          paragraph="Increased attendance rates.
-Fair compensation for committed participants.
-Streamlined event management tools.
-Automated fee redistribution.
-Risk-free for attendees (full refund for cancellations)"
+          paragraph="Customizable event website, Fair compensation for committed participants. Efficient event management tools. Automated fee redistribution. Risk-free for attendees (Refund for cancellations)."
           center
         />
 
@@ -88,27 +84,27 @@ const featuresData: Feature[] = [
     icon: <EventCreationIcon />,
     title: 'Event Creation',
     paragraph:
-      'Allow creators to set event details (date, time, location, description). Set attendee fee amount. Generate event link',
+      'Allow creators to set event details. Set attendee fee amount. Manage Guest list and Secure event invitations.',
   },
   {
     id: 2,
     icon: <AttendeesManagement />,
-    title: 'Attendee Management',
+    title: 'RSVP Management',
     paragraph:
-      'Allow attendees to RSVP via link. Charge attendee fee upon RSVP confirmation. Display attendee list and status',
+      'Allow attendees to RSVP online. Charge attendee fee upon RSVP confirmation. Display online attendee list and status.',
   },
   {
     id: 3,
     icon: <CancellationIcon />,
     title: 'Cancellation and Refunds',
     paragraph:
-      'Allow creators to cancel events. Automatically notify and refund fees to all participants upon cancellation',
+      'Allow creators to cancel events. Automatically notify and refund fees to all participants upon cancellation.',
   },
   {
     id: 4,
     icon: <RemindersIcon />,
     title: 'Notifications and Reminders',
     paragraph:
-      'Send event reminders(24hrs, 48hrs, 7days) and updates to attendees. Notify attendees of flaking or cancellation',
+      'Send event reminders(24hrs, 48hrs, 7days) and updates to attendees. Notify attendees about updates or cancellation.',
   },
 ]

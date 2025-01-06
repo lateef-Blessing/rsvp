@@ -10,19 +10,17 @@ export const Hero = () => {
             <div className="w-full px-4 lg:w-1/2">
               <div className="mb-12 max-w-[540px] lg:mb-0">
                 <h2 className="mb-5 text-3xl font-bold leading-tight sm:text-[40px] sm:leading-[1.2]">
-                  Say Goodbye to No-Shows: The Smart Way to Ensure Event
-                  Attendance
+                Say Goodbye to Event No-Shows: Efficient Online RSVP Tracking Solutions
                 </h2>
                 <p className="mb-10 text-base leading-relaxed">
-                  Boost commitment, reward attendees, and manage events
-                  effortlessly with our innovative RSVP system
+                  Boost Event attendance with our Online RSVP Event Management Software
                 </p>
 
                 <Link
                   href="/auth/login"
                   className="inline-flex items-center justify-center rounded-md bg-primary px-7 py-3 text-center text-base font-medium duration-300 hover:bg-primary/50"
                 >
-                  Create an Event!
+                 Create an Event for FREE
                 </Link>
               </div>
             </div>

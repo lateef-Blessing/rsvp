@@ -76,9 +76,7 @@ export function Faqs() {
               {openSection === 1 && (
                 <div className="accordion-content w-full overflow-hidden pr-4 max-h-[250px]">
                   <p className="text-base font-normal leading-6">
-                    If an attendee doesn't show up, 80% of their fee is
-                    redistributed among the attending participants. The
-                    remaining 20% covers our platform costs.
+                  Fees from no-shows are automatically redistributed to attendees who check in, ensuring fair rewards for committed participants.
                   </p>
                 </div>
               )}
@@ -130,10 +128,7 @@ export function Faqs() {
               {openSection === 2 && (
                 <div className="accordion-content w-full overflow-hidden pr-4 max-h-[250px]">
                   <p className="text-base font-normal leading-6">
-                    Yes, there is no restriction on event types, all events
-                    ranging from Corporate events like Conferences, to Social
-                    events like Birthdays, as well as Weddings and Educational
-                    Seminars
+                  Yes! ATENDEO supports all types of events, including weddings, corporate events, Seminars, private parties, and more.
                   </p>
                 </div>
               )}
@@ -185,8 +180,7 @@ export function Faqs() {
               {openSection === 3 && (
                 <div className="accordion-content w-full overflow-hidden pr-4 max-h-[250px]">
                   <p className="text-base font-normal leading-6">
-                    No worries! You cancel your attendance you receiver half of
-                    your deposit, the other half goes to the event attendees.
+                  You can cancel your RSVP, but refunds are subject to the event's cancellation policy.
                   </p>
                 </div>
               )}
@@ -238,8 +232,7 @@ export function Faqs() {
               {openSection === 4 && (
                 <div className="accordion-content w-full overflow-hidden pr-4 max-h-[250px]">
                   <p className="text-base font-normal leading-6">
-                    Yes, you can cancel any event you created, and notifications
-                    will be sent to all that RSVPd.
+                  Yes, event creators can cancel events at any time. Attendees will be notified, and refunds will be processed automatically.
                   </p>
                 </div>
               )}
@@ -291,9 +284,7 @@ export function Faqs() {
               {openSection === 5 && (
                 <div className="accordion-content w-full overflow-hidden pr-4 max-h-[250px]">
                   <p className="text-base font-normal leading-6">
-                    Absolutely. All fees are held securely by the system, acting
-                    as an escrow. Payments are only processed after the event
-                    concludes.
+                  Absolutely! ATENDEO uses secure payment systems and encryption to protect your transactions.
                   </p>
                 </div>
               )}
@@ -345,8 +336,7 @@ export function Faqs() {
               {openSection === 6 && (
                 <div className="accordion-content w-full overflow-hidden pr-4 max-h-[250px]">
                   <p className="text-base font-normal leading-6">
-                    All deposits and bonuses are distributed at the night of the
-                    event.
+                    All deposits and bonuses are distributed right after the event concludes.
                   </p>
                 </div>
               )}

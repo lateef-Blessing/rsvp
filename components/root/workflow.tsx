@@ -61,7 +61,7 @@ export function Workflow() {
             <SectionTitle
               subtitle="Workflow"
               title="HOW IT WORKS"
-              paragraph="ATENDEO is a Streamlined event management tool very easy to use."
+              paragraph="ATENDEO is an efficient online event management software designed to simplify your event planning process."
               center
             />
           </div>
@@ -79,8 +79,7 @@ export function Workflow() {
               </div>
               <h3 className="font-bold mb-2">Create Your Event</h3>
               <p className="text-lg text-center">
-                Set up your event details and RSVP fee, pay fee and generate
-                invite links.
+              Set up your event details and RSVP fee, pay the fee and generate invite links.
               </p>
             </div>
 
@@ -92,8 +91,7 @@ export function Workflow() {
               </div>
               <h3 className="font-bold mb-2">Invite Attendees</h3>
               <p className="text-lg text-center">
-                Share your event link with potential participants to become an
-                attendee of the event.
+              With digital invitations, you can share your event link with potential participants to become an event attendee and track RSVPs.
               </p>
             </div>
 
@@ -105,8 +103,7 @@ export function Workflow() {
               </div>
               <h3 className="font-bold mb-2">Secure RSVPs</h3>
               <p className="text-lg text-center">
-                Attendees confirm their spot by paying the invite fee and get
-                added to the event.
+              Attendees confirm their attendance by paying the invite fee, ensuring their spot is locked in. Confirmed RSVPs are visible and tracked by event creators.
               </p>
             </div>
 
@@ -118,9 +115,7 @@ export function Workflow() {
               </div>
               <h3 className="font-bold mb-2">Reminder</h3>
               <p className="text-lg text-center">
-                Notifications are received 24 hours to the event, notifications
-                of canceled events, refunds and redistributed invite fees are
-                also received by RSVPs.
+              Notifications are received 24 hours, 72 hours and 7 days before the event, notifications of cancelled events, refunds and redistributed invite fees are also received by online RSVPs.
               </p>
             </div>
 
@@ -132,9 +127,7 @@ export function Workflow() {
               </div>
               <h3 className="font-bold mb-2">Event Day</h3>
               <p className="text-lg text-center">
-                Attendees Scan QR codes to confirm attendance, and fees from
-                no-shows are automatically redistributed to attendees after the
-                event concludes.
+              On event day, Attendees Scan QR codes to confirm attendance and fees from no-shows are automatically redistributed to attendees after the event concludes.
               </p>
             </div>
 
@@ -146,8 +139,7 @@ export function Workflow() {
               </div>
               <h3 className="font-bold mb-2">Everyone Wins</h3>
               <p className="text-lg text-center">
-                Committed attendees may receive more than they paid! Increased
-                attendance rates. Fair compensation for committed participants
+              Committed attendees might walk away with more than they paid, thanks to redistributed fees. You enjoy higher attendance rates, while participants are fairly rewarded for showing up.
               </p>
             </div>
           </div>

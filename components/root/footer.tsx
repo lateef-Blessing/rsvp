@@ -18,8 +18,7 @@ export const Footer = () => {
                 </h1>
               </Link>
               <p className="mb-8 max-w-[270px] text-base text-gray-7">
-                Boost commitment, reward attendees, and manage events
-                effortlessly with our innovative RSVP system
+              Boost Event attendance with our Online RSVP Event Management Software
               </p>
               <div className="-mx-3 flex items-center">
                 <a
